@@ -1,4 +1,5 @@
 ﻿using System.Globalization;
+using M3HW2.Configs;
 using M3HW2.Models;
 using M3HW2.Services.Abstractions;
 
@@ -11,9 +12,8 @@ namespace M3HW2.Services
             ContactBook = new Dictionary<string, List<Contact>>();
 
             AlphabetConfigurationService = alphabetConfigurationService;
-            AlphabetConfigurationService.SerializeAlphabet(new Alphabet(), "config.json");
 
-            Alphabet = AlphabetConfigurationService.DeserializeAlphabet("config.json");
+            AlphabetConfig = AlphabetConfigurationService.DeserializeAlphabet("../../../config.json");
         }
 
         private CultureInfo Culture { get; set; }
@@ -22,7 +22,7 @@ namespace M3HW2.Services
 
         private Dictionary<string, List<Contact>> ContactBook { get; set; }
 
-        private Alphabet Alphabet { get; }
+        private AlphabetConfig AlphabetConfig { get; }
 
         public void AddContacts(Contact[] contacts)
         {
@@ -81,9 +81,9 @@ namespace M3HW2.Services
 
         public void InitializeContactBook()
         {
-            for (int i = 0; i < Alphabet.Alphabets[Culture.Name].Length; i++)
+            for (int i = 0; i < AlphabetConfig.Alphabet.Alphabets[Culture.Name].Length; i++)
             {
-                ContactBook.Add(Alphabet.Alphabets[Culture.Name][i].ToString(), new List<Contact>());
+                ContactBook.Add(AlphabetConfig.Alphabet.Alphabets[Culture.Name][i].ToString(), new List<Contact>());
             }
 
             ContactBook.Add("0-9", new List<Contact>());

@@ -2,10 +2,11 @@
 {
     public class Alphabet
     {
-        public Dictionary<string, string> Alphabets { get; set; } = new Dictionary<string, string>()
+        public Alphabet()
         {
-            ["en-US"] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
-            ["uk-UA"] = "АБВГҐДЕЄЖЗИІЇЙКЛМНОПРСТУФХЦЧШЩЮЯ"
-        };
+            Alphabets = new Dictionary<string, string>();
+        }
+
+        public Dictionary<string, string> Alphabets { get; set; }
     }
 }
